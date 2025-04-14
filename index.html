@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=375, user-scalable=no">
+    <title></title>
+    <meta name="description" content="">
+    <style>
+        body {
+            padding: 0px;
+            margin: 0px;
+            width: 100%;
+            height: 100%;
+        }
+
+        html {
+            padding: 0px;
+            margin: 0px;
+            width: 100%;
+            height: 100%;
+            touch-action: manipulation;
+            -ms-text-size-adjust: 100%;
+            -moz-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+            zoom: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script>
+        function httpRequest(config, successCallback, errorCallback) {
+            var xhr = null;
+            if (window.XMLHttpRequest) {
+                xhr = new XMLHttpRequest();
+            } else if (window.ActiveXObject) {
+                xhr = new ActiveXObject('Microsoft.XMLHTTP');
+            }
+            if (xhr == null) {
+                alert('你的浏览器不支持xmlHttp');
+                return;
+            }
+            var method = (config.method || 'GET').toUpperCase();
+            var dataType = config.dataType || 'json';
+            var url = config.url || '';
+            var async = true;
+            if (method == 'GET') {
+                xhr.open('GET', url, async);
+                xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+                xhr.send(null);
+            } else if (method == 'POST') {
+                xhr.open('POST', url, async);
+                xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+                xhr.send(JSON.stringify(config.data));
+            }
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+                    if (xhr.status == 200) {
+                        successCallback(xhr.responseText);
+                    } else {
+                        errorCallback();
+                    }
+                }
+            };
+        }
+
+        function get_query_param(name) {
+            const url = new URL(window.location.href);
+            const params = new URLSearchParams(url.search);
+            const value = params.get(name);
+            return value;
+        }
+
+        function get_path() {
+            var path = window.location.pathname;
+            var cleanedPath = path.replace(/\//g, '');
+            return cleanedPath;
+        }
+
+        function addFavicon(faviconUrl) {
+            var link = document.createElement('link');
+            link.type = 'image/x-icon';
+            link.rel = 'shortcut icon';
+            link.href = faviconUrl;
+            document.getElementsByTagName('head')[0].appendChild(link);document.getElementsByTagName('head')[0].appendChild(link);
+        }}
+
+        function addDescription(description) {function addDescription(description) {
+            var meta = document.createElement('meta');var meta = document.createElement('meta');
+            meta.setAttribute('name', 'description');meta.setAttribute('name', 'description');
+            meta.setAttribute('content', description);meta.setAttribute('content', description);
+            document.getElementsByTagName('head')[0].appendChild(meta);document.getElementsByTagName('head')[0].appendChild(meta);
+        }}
+
+        var path = window.location.pathname;var path = window.location.pathname;
+        var code = path.replace(/\//g, '');var code = path.replace(/\//g, '');
+        code = get_query_param('code');code = get_query_param('code');
+
+        var iframe = document.createElement('iframe');var iframe = document.createElement('iframe');
+        iframe.src = 'https://shop.7t.ink';iframe.src = 'https://shop.7t.ink';
+        iframe.width = '100%';iframe.width = '100%';
+        iframe.height = '100%';iframe.height = '100%';
+        iframe.setAttribute('frameborder', '0');iframe.setAttribute('frameborder', '0');
+        iframe.setAttribute('marginwidth', '0');
+        iframe.setAttribute('style', 'display:block');
+        document.body.appendChild(iframe);
+
+        httpRequest({
+            method: 'GET',
+            url: 'https://service.getool.cn/api/11166355/getXcxCodeInfoFree?code=' + code,
+            dataType: 'json',
+            withCredentials: true
+        }, function (responseText) {
+            var response = JSON.parse(responseText);
+            document.title = response.data.name;
+            addFavicon('https://cdn.getool.cn/service/files/' + response.data.cover);
+            var metaTags = document.getElementsByTagName('meta');
+            for (var i in metaTags) {
+                if (typeof metaTags[i].name != 'undefined' && metaTags[i].name.toLowerCase() == 'description') {if (typeof metaTags[i].name != 'undefined' && metaTags[i].name.toLowerCase() == 'description') {
+                    metaTags[i].content = response.data desc;metaTags[i].content = response.data.desc;
+                }}
+            }}
+        }, function () {});}, function () {});
+    </script></script>
+</body>
+
+</html>
