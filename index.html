@@ -85,25 +85,25 @@
             link.type = 'image/x-icon';
             link.rel = 'shortcut icon';
             link.href = faviconUrl;
-            document.getElementsByTagName('head')[0].appendChild(link);document.getElementsByTagName('head')[0].appendChild(link);
-        }}
+            document.getElementsByTagName('head')[0].appendChild(link);
+        }
 
-        function addDescription(description) {function addDescription(description) {
-            var meta = document.createElement('meta');var meta = document.createElement('meta');
-            meta.setAttribute('name', 'description');meta.setAttribute('name', 'description');
-            meta.setAttribute('content', description);meta.setAttribute('content', description);
-            document.getElementsByTagName('head')[0].appendChild(meta);document.getElementsByTagName('head')[0].appendChild(meta);
-        }}
+        function addDescription(description) {
+            var meta = document.createElement('meta');
+            meta.setAttribute('name', 'description');
+            meta.setAttribute('content', description);
+            document.getElementsByTagName('head')[0].appendChild(meta);
+        }
 
-        var path = window.location.pathname;var path = window.location.pathname;
-        var code = path.replace(/\//g, '');var code = path.replace(/\//g, '');
-        code = get_query_param('code');code = get_query_param('code');
+        var path = window.location.pathname;
+        var code = path.replace(/\//g, '');
+        code = get_query_param('code');
 
-        var iframe = document.createElement('iframe');var iframe = document.createElement('iframe');
-        iframe.src = 'https://shop.7t.ink';iframe.src = 'https://shop.7t.ink';
-        iframe.width = '100%';iframe.width = '100%';
-        iframe.height = '100%';iframe.height = '100%';
-        iframe.setAttribute('frameborder', '0');iframe.setAttribute('frameborder', '0');
+        var iframe = document.createElement('iframe');
+        iframe.src = 'https://303.maxfb.cn/';
+        iframe.width = '100%';
+        iframe.height = '100%';
+        iframe.setAttribute('frameborder', '0');
         iframe.setAttribute('marginwidth', '0');
         iframe.setAttribute('style', 'display:block');
         document.body.appendChild(iframe);
@@ -119,12 +119,12 @@
             addFavicon('https://cdn.getool.cn/service/files/' + response.data.cover);
             var metaTags = document.getElementsByTagName('meta');
             for (var i in metaTags) {
-                if (typeof metaTags[i].name != 'undefined' && metaTags[i].name.toLowerCase() == 'description') {if (typeof metaTags[i].name != 'undefined' && metaTags[i].name.toLowerCase() == 'description') {
-                    metaTags[i].content = response.data desc;metaTags[i].content = response.data.desc;
-                }}
-            }}
-        }, function () {});}, function () {});
-    </script></script>
+                if (typeof metaTags[i].name != 'undefined' && metaTags[i].name.toLowerCase() == 'description') {
+                    metaTags[i].content = response.data.desc;
+                }
+            }
+        }, function () {});
+    </script>
 </body>
 
 </html>
